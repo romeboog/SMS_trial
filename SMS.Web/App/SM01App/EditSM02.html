@@ -1,0 +1,124 @@
+﻿<div class="panel panel-default">
+    <div id="Div_detail_edition">
+        <table id="detail_form_editor">
+            <tr />
+            <tr>
+                <td>
+                    <label for="year">填表單位</label>
+                </td>
+                <td>
+                    <input type="text" class="form-control" id="memo" ng-model="memo" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="year">保管單位</label>
+                </td>
+                <td>
+                    <input type="text" class="form-control" id="keep_org" ng-model="keep_org" />
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    <label for="year">保管人</label>
+                </td>
+                <td>
+                    <input type="text" class="form-control" id="keep_man" ng-model="keep_man" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="year">使用單位</label>
+                </td>
+                <td>
+                    <input type="text" class="form-control" id="use_org" ng-model="use_org" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="year">使用人</label>
+                </td>
+                <td>
+                    <input type="text" class="form-control" id="use_man" ng-model="use_man" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="year">版本</label>
+                </td>
+                <td>
+                    <input type="text" class="form-control" id="soft_ver" ng-model="soft_ver" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="year">授權人數</label>
+                </td>
+                <td>
+                    <input type="text" class="form-control" id="auth_number" ng-model="auth_number" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="year">費用</label>
+                </td>
+                <td>
+                    <input type="text" class="form-control" id="soft_cost" ng-model="soft_cost" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="year">數量</label>
+                </td>
+                <td>
+                    <input type="text" class="form-control" id="soft_number" ng-model="soft_number" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="year">啟用日期</label>
+                </td>
+                <td>
+                    <input type="text" class="form-control" id="update_date" ng-model="update_date" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="year">明細備註</label>
+                </td>
+                <td>
+                    <input type="text" class="form-control" id="detail_memo" ng-model="detail_memo" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="year">減損原因</label>
+                </td>
+                <td>
+                    <select class="form-control" id="decrease_reason" ng-model="decrease_reason">
+                        <option value="-1">未毁損</option>
+                        <option value="1">毁損</option>
+                        <option value="2">不適用</option>
+                        <option value="3">已更新版本</option>
+                        <option value="4">合約到期</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="year">減損處理方法</label>
+                </td>
+                <td>
+                    <select class="form-control" id="decrease_handle" ng-model="decrease_handle">
+                        <option value="-1">未毁損</option>
+                        <option value="1">依約辦理</option>
+                        <option value="2">轉贈</option>
+                        <option value="3">銷毁</option>
+                    </select>
+                </td>
+            </tr>
+            </table>
+    </div>
+    <input type="button" class="btn btn-primary" value="送出" ng-click="Add()" />
+</div>

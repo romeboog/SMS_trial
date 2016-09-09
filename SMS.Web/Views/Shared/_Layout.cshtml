@@ -1,0 +1,136 @@
+﻿  <!DOCTYPE html>
+<html ng-app="MainApp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - ASP.NET 應用程式</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/angular-route.js"></script>
+    <script src="~/Scripts/angular-resource.js"></script>
+    <script src="~/Scripts/angular-ui/ui-bootstrap-tpls.js"></script>
+    <script src="~/App/app.js"></script>
+    <script src="~/App/SM01App/SM01Controller.js"></script>
+    <script src="~/App/SM01App/SM01Service.js"></script>
+    <script src="~/App/SM01App/SM01AddController.js"></script>
+    <script src="~/App/SM01App/SM01EditController.js"></script>i
+    <script src="~/App/SM01App/SM02AddController.js"></script>
+    <script src="~/App/SM01App/SM02Controller.js"></script>
+    <script src="~/App/SM01App/SM02EditController.js"></script>
+    <script src="~/App/SM01App/SM02Service.js"></script>
+   
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />  
+    <style>
+        .siteID {
+            color: #FFF;
+           font-size: 30px;
+            font-weight: bold;
+            font-family: 微软雅黑,Arial, Helvetica;
+            text-shadow: 5px 5px 5px #000;
+            margin-right: 10px;
+        }
+
+            .siteID:hover {
+                color: #fff;
+                text-decoration: none;
+            }
+
+        .btn-primary:hover {
+            background-color: #004b97;
+            font-weight: bold;
+        }
+        .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:hover {
+            background-color: #004B97;
+            font-weight: bold;
+        }
+
+      
+
+    </style>
+
+
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="siteID" href="/Home/Index">
+                    教育部軟體管理系統
+                </a>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @*@Html.ActionLink("軟體管理系統", "Index", "Home", null, new { @class = "navbar-brand" })*@
+            </div>
+            <div class="navbar-collapse collapse" id="navbar-main">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">基本資料維護作業<span class="caret"></span></a>
+
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+                            <li>
+                                <a href="/BD03">用戶管理</a>
+                            </li>
+                            <li>
+                                <a href="#">部門管理</a>
+                            </li>
+                            <li>
+                                <a href="#">計畫管理</a>
+                            </li>
+                            <li>
+                                <a href="#">修改密碼</a>
+                            </li>
+                        </ul>
+
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">相關表單<span class="caret"></span></a>
+                        <ul class="dropdown-menu" aria-labelledby="download">
+                            <li>
+                                <a href="/SM01">軟體保管單</a>
+                            </li>
+                            <li>
+                                <a href="/SM01List/index">軟體保管單列表</a>
+                            </li>
+                            <li>
+                                <a href="#">軟體目錄</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    @*<li>
+                        @Html.ActionLink("軟體保管單首頁", "index", "SM01")
+                    </li>
+                    <li>
+                        <a href="~/SM01List">軟體保管單列表</a>
+                    </li>*@
+                </ul>
+                        @Html.Partial("_LoginPartial")
+</div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - 我的 ASP.NET 應用程式</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <script src="~/App/BD03App/BD03Service.js"></script>
+    <script src="~/App/BD03App/BD03Controller.js"></script>
+    <script src="~/App/BD03App/BD03AddController.js"></script>
+    <script src="~/App/BD03App/UserEditController.js"></script>
+ 
+</body>
+</html>
