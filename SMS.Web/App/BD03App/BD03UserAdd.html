@@ -9,7 +9,7 @@
                     <option value="">--請選擇--</option>
                 </select>
             </div>
-            <!--<pre class="ng-binding">myForm.User_org.$valid= {{myForm.User_org.$valid}}</pre>-->
+            <pre class="ng-binding">myForm.User_org.$valid= {{myForm.User_org.$valid}}</pre>
 
             <br />
             <label for="User_Dept">部門</label>&nbsp&nbsp
@@ -25,25 +25,25 @@
                     <option value="">--請選擇--</option>
                 </select>
             </div>
-            <!--<pre class="ng-binding">myForm.User_dept.$valid= {{myForm.User_dept.$valid}}</pre>-->
+            <pre class="ng-binding">myForm.User_dept.$valid= {{myForm.User_dept.$valid}}</pre>
 
             <br />
             <label for="User_Id">使用者編號</label>&nbsp&nbsp
             <span style="color:red" ng-show="!myForm.User_id.$valid"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>必填</span>
-            <input type="text" class="form-control" id="User_Id" name="User_id" maxlength="15" ng-model="user_id" ng-trim="true" ng-required="true"  required>
-            <!--<pre class="ng-binding">myForm.User_id.$valid= {{myForm.User_id.$valid}}</pre>-->
+            <input type="text" class="form-control" id="User_Id" name="User_id" maxlength="15" ng-model="user_id" ng-trim="true" ng-required="true" ng-minlength="3" required>
+            <pre class="ng-binding">myForm.User_id.$valid= {{myForm.User_id.$valid}}</pre>
 
 
             <label for="User_Name">姓名</label>&nbsp&nbsp
             <span style="color:red" ng-show="!myForm.User_name.$valid"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>必填</span>
-            <input type="text" class="form-control" id="User_Name" name="User_name" ng-trim="true" ng-model="user_name" maxlength="12" ng-required="true" required>
-            <!--<pre class="ng-binding">myForm.User_name.$valid= {{myForm.User_name.$valid}}</pre>-->
+            <input type="text" class="form-control" id="User_Name" name="User_name" ng-trim="true" ng-model="user_name" ng-required="true" required>
+            <pre class="ng-binding">myForm.User_name.$valid= {{myForm.User_name.$valid}}</pre>
             <br />
             <label for="User_Password">密碼</label>&nbsp&nbsp
             <span style="color:red" ng-show="myForm.User_password.$error.required"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>必填</span>
             <span style="color:red" ng-show="myForm.User_password.$error.pattern"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>密碼格式不正確，長度6碼以上，需含大、小寫字母與數字</span>
             <input type="password" id="User_Password" name="User_password" class="form-control" maxlength="40" ng-model="user_pwd" ng-trim="true" ng-required="true" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,40}$" placeholder="6碼以上，需含大、小寫字母與數字">
-            <!--<pre class="ng-binding">myForm.User_password.$valid= {{myForm.User_password.$error}}</pre>-->
+            <pre class="ng-binding">myForm.User_password.$valid= {{myForm.User_password.$error}}</pre>
 
             <br />
             <label for="User_Sex">性別</label>
@@ -59,7 +59,7 @@
 
             <br />
             <label for="User_Tel">電話</label>
-            <input type="text" class="form-control" id="User_Tel" name="User_tel" ng-model="user_tel" ng-trim="true" maxlength="20">
+            <input type="text" class="form-control" id="User_Tel" name="User_tel" ng-model="user_tel" ng-trim="true">
 
             <br />
             <label for="Auth_Type">權限</label>
@@ -83,7 +83,7 @@
         <br\>
             <ul class="nav nav-pills">
                 <li class="active">
-                    <a class="btn btn-primary" href="#" ng-disabled="myForm.$invalid" ng-click="Add()">
+                    <a class="btn btn-primary" href="#" ng-click="Add()">
                         <i class="fa fa-pencil" aria-hidden="true"></i>
                         送出
                     </a>
