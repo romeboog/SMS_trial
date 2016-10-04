@@ -41,3 +41,17 @@ MainApp.config(['$routeProvider', '$locationProvider', function ($routeProvider,
         requireBase: false
     });
 }]);
+var app = angular.module('test', ['angular-popups']);
+app.controller('dialogCtrl', function ($scope) {
+    $scope.message = 'hello world';
+    $scope.title = '提示';
+    $scope.okValue = '确定';
+    $scope.cancelValue = '取消';
+});
+
+angular.module("MainApp1", ["MainApp", "test"]);
+
+//angular.element(document).ready(function() {
+//    var myDiv1 = document.getElementById("myDiv1");
+//    angular.bootstrap(myDiv1, ["test"]);
+//});

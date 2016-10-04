@@ -45,7 +45,6 @@ namespace SMS.Web.API
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message.ToString());
             }
-
         }
         //public HttpResponseMessage Post(SM01ViewModel model)
         //{

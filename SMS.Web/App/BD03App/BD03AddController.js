@@ -24,14 +24,33 @@
         $scope.error = "取得機關資料錯誤";
     });
    
+    
+
     //機關變動時，部門一併變動
     $scope.change = function (org) {
-        BD03Service.getdept_base(delptP_year, org).then(function (response) {
-            $scope.user_depts = response;
-        }, function () {
-            $scope.error = "取得部門資料錯誤";
-        })
+
+        if (org !== undefined && org !== null) {
+            //org有值
+            BD03Service.getdept_base(delptP_year, org).then(function (response) {
+                $scope.user_depts = response;
+            }, function () {
+                $scope.error = "取得部門資料錯誤";
+            })
+        } else {
+            //org無值
+            org = "all";
+            BD03Service.getdept_base(delptP_year, org).then(function (response) {
+                $scope.user_depts = response;
+            }, function () {
+                $scope.error = "取得部門資料錯誤";
+            })
+        }
+
+
     };
+
+
+
 
 
     $scope.Add = function () {

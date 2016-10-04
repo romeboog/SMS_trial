@@ -14,17 +14,13 @@
             <br />
             <label for="User_Dept">部門</label>&nbsp&nbsp
             <span style="color:red" ng-show="!myForm.User_dept.$valid"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>必填</span>
-            <div name="div_org" ng-show="user_org">
+            <div name="div_org" >
                 <select class="form-control" id="User_Dept" name="User_dept" ng-trim="true" ng-model="user_dept" ng-options="dept.dept_id as dept.dept_name for dept in user_depts" ng-required="true" required>
                     <option value="">--請選擇--</option>
                 </select>
             </div>
 
-            <div ng-hide="myForm.User_org.$valid">
-                <select class="form-control" id="User_Dept1">
-                    <option value="">--請選擇--</option>
-                </select>
-            </div>
+
             <!--<pre class="ng-binding">myForm.User_dept.$valid= {{myForm.User_dept.$valid}}</pre>-->
 
             <br />
