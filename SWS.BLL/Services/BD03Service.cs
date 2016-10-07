@@ -20,18 +20,32 @@ namespace SMS.BLL.Services
         }        
         
         /// <summary>分頁程式碼</summary>
-        public IQueryable<BD03ViewModel_SM01DDL> Get(int CurrPage, int PageSize, out int TotalRow)
+        public IQueryable<BD03ViewModel_SM01DDL> Get(int CurrPage, int PageSize, string Select_Org, string Select_Dept, string Select_Id, string Select_Name, out int TotalRow)
         {
             //定義的ViewModel
             List<BD03ViewModel_SM01DDL> model = new List<BD03ViewModel_SM01DDL>();
+            List<bd03_user> dbresult = new List<bd03_user>();
+            var q = db.Get().ToList();
 
-            //取得所有筆數
-            TotalRow = db.Get().ToList().Count;
 
-            //使用Linq篩選分頁
-            var dbresult = db.Get().ToList().OrderBy(e => e.user_org).ThenBy(e => e.user_dept).ThenBy(e => e.user_id).Skip((CurrPage - 1) * PageSize).Take(PageSize).ToList();
+            if (Select_Org == "all" && Select_Dept == "all" && Select_Id == "all" && Select_Name=="all")
+            {
+                //取得所有筆數
+                TotalRow = db.Get().ToList().Count;
+                //使用Linq篩選分頁
+                dbresult = db.Get().OrderByDescending(e => e.user_org).ThenBy(e => e.user_dept).ThenBy(e => e.user_id).Skip((CurrPage - 1) * PageSize).Take(PageSize).ToList();
+            }
+            else
+            {
+                //使用查詢時Linq篩選資料
+                TotalRow = db.Get().Where(u => u.user_org == (Select_Org.Equals("all") ? u.user_org : Select_Org) && u.user_dept == (Select_Dept.Equals("all") ? u.user_dept : Select_Dept) && u.user_id.Trim() == (Select_Id.Equals("all") ? u.user_id.Trim() : Select_Id) && u.user_name.Trim() == (Select_Name.Equals("all") ? u.user_name.Trim() : Select_Name)).ToList().Count;
+                dbresult = db.Get().Where(u => u.user_org == (Select_Org.Equals("all") ? u.user_org : Select_Org) && u.user_dept == (Select_Dept.Equals("all") ? u.user_dept : Select_Dept) && u.user_id.Trim() == (Select_Id.Equals("all") ? u.user_id.Trim() : Select_Id) && u.user_name.Trim() == (Select_Name.Equals("all") ? u.user_name.Trim() : Select_Name)).OrderByDescending(e => e.user_org).ThenBy(e => e.user_dept).ThenBy(e => e.user_id).Skip((CurrPage - 1) * PageSize).Take(PageSize).ToList();
+            }
+
+            //從資料讀出後傳回列表
             foreach (var items in dbresult)
             {
+               
                 BD03ViewModel_SM01DDL _model = new BD03ViewModel_SM01DDL();
                 _model.usable = items.usable;
                 _model.user_id = items.user_id.Trim();
@@ -65,7 +79,6 @@ namespace SMS.BLL.Services
             }
             model.OrderBy(e => e.user_org).ThenBy(e => e.user_dept).ThenBy(e => e.user_id);
             return model.AsQueryable();
-
         }
 
         /// <summary>取得特定使用者資料</summary>
@@ -90,7 +103,6 @@ namespace SMS.BLL.Services
             {
 
                 BD03AddModel _model = new BD03AddModel();
-
                 _model.user_org = result.user_org.Trim();
                 _model.user_dept = result.user_dept.Trim();
                 _model.user_id = result.user_id.Trim();

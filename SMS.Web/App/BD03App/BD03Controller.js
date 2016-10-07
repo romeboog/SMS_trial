@@ -1,14 +1,18 @@
 ﻿MainApp.controller("BD03Ctrl", function ($scope, $location, $route, BD03Service) {
 
-    $scope.user_dept = '';
-    $scope.user_id = '';
-    $scope.user_name = '';
+    //查詢功能參數
+    var view_select_org = $scope.select_org;         //機關
+    var view_select_dept = $scope.select_dept;       //部門
+    var view_select_user_id = $scope.select_user_id; //使用者編號
+    var view_select_user_name = $scope.select_name;  //使用者名字
+  
+    //部門資料預設年度
     var delptP_year = "105";
-    var delptP_org = $scope.user_org;
+    var delptP_org = $scope.select_org;
+
 
     //取得機關資料
     BD03Service.getorg_base($scope).then(function (response) {
-
         $scope.user_orgs = response;
     }, function () {
         $scope.error = "取得機關資料錯誤";
@@ -33,8 +37,6 @@
                 $scope.error = "取得部門資料錯誤";
             })
         }
-        
-        
     };
 
 
@@ -49,8 +51,18 @@
         $scope.isload = true;
         GetData();
     }
+    $scope.Search = function () {
+        $scope.currentPage = 1; //回到第一頁
+
+        GetData();
+      
+    }
+
+    //列表的資料來源
     var GetData = function () {
-        BD03Service.getData($scope.currentPage, $scope.pageSize)
+       
+        GetSelectData();
+        BD03Service.getData($scope.currentPage, $scope.pageSize, view_select_org, view_select_dept, view_select_user_id, view_select_user_name)
             .then(function (response) {
                 $scope.BD03s = response.Data;
                 $scope.totalRecords = response.Total;
@@ -61,8 +73,32 @@
                 $scope.isload = false;
             });
     };
-    GetData();
 
+    //按下查詢所需參數
+    var GetSelectData = function () {
+        if ($scope.select_org !== undefined && $scope.select_org !== null)
+        { view_select_org = $scope.select_org; }
+        else
+        { view_select_org = 'all'; }
+
+        if ($scope.select_dept !== undefined && $scope.select_dept !== null)
+        { view_select_dept = $scope.select_dept; }
+        else
+        { view_select_dept = 'all'; }
+
+        if ($scope.select_user_id !== undefined && $scope.select_user_id !== null)
+        { view_select_user_id = $scope.select_user_id; }
+        else
+        { view_select_user_id = 'all'; }
+
+        if ($scope.select_name !== undefined && $scope.select_name !== null)
+        { view_select_user_name = $scope.select_name; }
+        else
+        { view_select_user_name = 'all'; }
+    }
+
+    GetData();
+   
     // 點選編輯時，移至編輯頁面
     $scope.Update = function (user_org,user_dept,uset_id) {
         $location.path('/BD03/Edit/' + user_org + '/' + user_dept + '/' + uset_id);

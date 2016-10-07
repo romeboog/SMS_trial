@@ -20,15 +20,18 @@ namespace SMS.Web.API
 
         //分頁
         [HttpGet]
-        public HttpResponseMessage bd03s(int CurrPage, int PageSize)
+        public HttpResponseMessage bd03s(int CurrPage, int PageSize, string Select_Org, string Select_Dept, string Select_Id, string Select_Name)
         {
             try
             {
                 //總數量
                 int TotalRow = 0;
-
+                if (Select_Id == null || Select_Id == "")
+                    Select_Id = "all";
+                if (Select_Name == null || Select_Name == "")
+                    Select_Name = "all";
                 //向BLL取得資料
-                var datas = service.Get(CurrPage, PageSize, out TotalRow);
+                var datas = service.Get(CurrPage, PageSize, Select_Org, Select_Dept, Select_Id, Select_Name, out TotalRow);
 
                 //回傳一個JSON Object
                 var Rvl = new { Total = TotalRow, Data = datas };
@@ -47,6 +50,7 @@ namespace SMS.Web.API
         {
             try
             {
+
                 var datas = service.getUser(User_org, User_dept, User_id);
                 return Request.CreateResponse(HttpStatusCode.OK, datas);
             }

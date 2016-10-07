@@ -10,10 +10,10 @@
         },
 
         //分頁
-        getData: function (currentPage, pageSize) {
+        getData: function (currentPage, pageSize, select_org, select_dept, select_id, select_name) {
             var deferred = $q.defer();
 
-            $http.get('/api/BD03', { params: { CurrPage: currentPage, PageSize: pageSize } })
+            $http.get('/api/BD03', { params: { CurrPage: currentPage, PageSize: pageSize, Select_Org: select_org, Select_Dept: select_dept, Select_Id: select_id, Select_Name: select_name } })
                 .success(deferred.resolve)
                 .error(deferred.reject);
             return deferred.promise;
@@ -62,6 +62,7 @@
             .success(deferred.resolve)
             .error(deferred.reject);
         return deferred.promise;
-    }
+        }
+
     }
 });

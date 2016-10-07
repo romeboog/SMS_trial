@@ -18,7 +18,6 @@ namespace SMS.DAL.Interfaces
 
         TEntity GetByID(object year, object org, object dept, object soft_id);
         
-
        //BD03:取得某筆使用者資料
         TEntity GetByUserInfo(object org, object dept, object user_id);
 
